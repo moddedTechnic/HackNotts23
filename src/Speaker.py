@@ -1,10 +1,13 @@
 from dataclasses import dataclass, field
+from threading import Thread
 
 import RPi.GPIO as gpio
 
+from Runnable import Runnable
+
 
 @dataclass
-class Speaker:
+class Speaker(Runnable):
     pin: int
     speed: float = field(default=0, init=False)
     running: bool = False
@@ -17,6 +20,9 @@ class Speaker:
 
     def run(self) -> None:
         self.running = True
+        t = Thread(target=self.loop, args=())
+        t.start()
+        t.join()
 
     def stop(self) -> None:
         self.running = False
@@ -26,5 +32,5 @@ class Speaker:
             self.buzz()
 
     def buzz(self) -> None:
-        raise NotImplemented()
+        print('Buzz')
 
