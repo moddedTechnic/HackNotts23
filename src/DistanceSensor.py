@@ -1,6 +1,8 @@
 import RPi.GPIO as gpio
 from dataclasses import dataclass
 from time import sleep,time
+from Runnable import Runnable
+from threading import Thread
  
 @dataclass
 class DistanceSensor:
@@ -18,6 +20,9 @@ class DistanceSensor:
 
     def run(self): 
         self.running=True
+        t = Thread(target=self.get_distance,args=())
+        t.start()
+        t.join()
 
     def stop(self):
         self.running=False
