@@ -1,6 +1,7 @@
 # IDEAS
 
-- Sound-based communication protocol
-
-- Foot picture trader
+- Game controlled by RFID reader
+  - pygame
+  - rfid as input
+  - tetris clone
 
