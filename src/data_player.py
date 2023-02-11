@@ -1,3 +1,5 @@
+from time import time
+
 from interface import play
 from cryptography.fernet import Fernet
 
@@ -10,17 +12,20 @@ def play_data(data, key):
 
     stream = sz_data + sz_key + data.hex() + key.hex()
 
-    sec = len(stream)*0.2
+    sec = len(stream)*0.25*1.2837
     print(f"Message is estimated to take {sec:0.2f} seconds")
 
+    start = time()
     for n in stream:
         n = int(n, 16)
         play(n)
+    end = time()
+    print(f'Time taken {(end - start):0.2f}s')
 
 
 if __name__ == '__main__':
 
-    msg = b'My name is Diogo and this is an exclamation mark!'
+    msg = b'1a'
     #key = Fernet.generate_key()
     key = b'RtPOTIPFCPDD9kVrOJBYZVHZXnGr9XPbDAi5rD7GBE4='
     fernet = Fernet(key)
