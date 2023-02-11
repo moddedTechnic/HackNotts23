@@ -13,4 +13,7 @@
 
 
 3) Computer communication over ASL
+  - get the dataset
+  - make the computers read the images and interpret them
+  - reply to the other computer
 
