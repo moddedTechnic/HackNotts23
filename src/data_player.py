@@ -24,13 +24,13 @@ def play_data(data, key):
     print(f'Time taken {(end - start):0.2f}s')
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
 
     msg = b'1a'
-    #key = Fernet.generate_key()
+    key = Fernet.generate_key()
     key = b'RtPOTIPFCPDD9kVrOJBYZVHZXnGr9XPbDAi5rD7GBE4='
     fernet = Fernet(key)
 
     encMsg = fernet.encrypt(msg)
-    print("iudsvfudh")
-    #play_data(encMsg, key)
+    play_data(encMsg, key)
+
