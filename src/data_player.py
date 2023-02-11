@@ -10,7 +10,8 @@ def play_data(data, key):
 
     stream = sz_data + sz_key + data.hex() + key.hex()
 
-    print(stream)
+    sec = len(stream)*0.2
+    print(f"Message is estimated to take {sec:0.2f} seconds")
 
     for n in stream:
         n = int(n, 16)
@@ -19,7 +20,7 @@ def play_data(data, key):
 
 if __name__ == '__main__':
 
-    msg = b'beep'
+    msg = b'My name is Diogo and this is an exclamation mark!'
     #key = Fernet.generate_key()
     key = b'RtPOTIPFCPDD9kVrOJBYZVHZXnGr9XPbDAi5rD7GBE4='
     fernet = Fernet(key)
