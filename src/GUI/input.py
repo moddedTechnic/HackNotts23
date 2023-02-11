@@ -1,32 +1,33 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import Tk, Text
 
 
 ##keep it first
 input_window = tk.Tk()
 
 #variables
-window_width = 400
-window_height = 400
+window_width = 350
+window_height = 100
 
 #window title
 input_window.title("Input")
 
 #window size
-input_window.geometry(f'{window_width}x{window_height}+0+0')
-input_window.resizable(False, False)
+input_window.geometry(f"{window_width}x{window_height}")
 
-#buttons
-submit_input = ttk.Button(
-   input_window,
-   text="Input"
-)
+#form
+fields = {}
 
-submit_input.pack(
-    ipadx=5,
-    ipady=5,
-    expand=True
-)
+fields['input'] = ttk.Label(text='Input:')
+fields['input'] = ttk.Entry()
+
+for field in fields.values():
+    field.pack(anchor=tk.W, padx=10, pady=5, fill=tk.X)
+
+ttk.Button(text='Input').pack(anchor=tk.W, padx=10, pady=5)
+
+
 
 #message = tk.Label(input_window, text="Hello, World!")
 #message.pack()
