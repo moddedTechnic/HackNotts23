@@ -2,6 +2,8 @@
 
 def run():
     
+    #create 2 speaker threads
+
     #get distance for both sensors
 
     #play sound according to the distance independently
