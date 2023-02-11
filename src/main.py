@@ -11,7 +11,7 @@ def send_info():
 input_window = tk.Tk()
 
 #variables
-window_width = 200
+window_width = 300
 window_height = 200
 
 #window title
