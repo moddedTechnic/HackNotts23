@@ -6,7 +6,7 @@ def recieve_filtered_data(data):
     key_size = int(data[4:8], 16)
 
     if len(data) != 8 + data_size + key_size:
-        print('Fucked up')
+        print('Big oopsie!')
         return
 
     encMsg = bytes.fromhex(data[8:data_size+8])
