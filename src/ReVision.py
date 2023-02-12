@@ -5,6 +5,8 @@ import Speaker
 
 def run_aid():
     gpio.setmode(gpio.BOARD)
+    gpio.setwarning(False)
+
     sensor = DistanceSensor.DistanceSensor(11,12)
     sensor.run()
 
