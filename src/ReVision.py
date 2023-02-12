@@ -8,7 +8,7 @@ def run_aid():
     sensor = DistanceSensor.DistanceSensor(11,12)
 
 
-    speaker = Speaker.Speaker(15)
+    speaker = Speaker.Speaker(29)
     speaker.run()
 
     dist_range = [0.2, 1.0]
