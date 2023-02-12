@@ -12,7 +12,7 @@ def run_aid():
     speaker.run()
 
     dist_range = [0.2, 1.0]
-    speed_range = [0.2, 1.0]
+    speed_range = [0, 1.0]
 
     try:
         while True:

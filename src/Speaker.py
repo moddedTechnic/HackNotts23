@@ -38,8 +38,16 @@ class Speaker(Runnable):
             self.buzz()
 
     def buzz(self) -> None:
-        gpio.output(self.pin, gpio.HIGH)
-        sleep(self.speed / 2)
-        gpio.output(self.pin, gpio.LOW)
-        sleep(self.speed / 2)
+        self.click(440, self.speed)
+
+    def click(self, frequency: float, duration: float) -> None:
+        period = 1 / frequency
+        duty_cycle = 0.5
+        on_time = duty_cycle * period
+        off_time = (1 - duty_cycle) * period
+        for _ in range(int(frequency * duration)):
+            gpio.output(self.pin, gpio.HIGH)
+            sleep(on_time)
+            gpio.output(self.pin, gpio.LOW)
+            sleep(off_time)
 
