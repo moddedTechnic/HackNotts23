@@ -51,7 +51,6 @@ class DistanceSensor(Runnable):
                 pass
             stopTime = time()
             diffTime = stopTime - startTime
-            print(stopTime, startTime, diffTime)
             self.distance = diffTime * SOUND_SPEED / 2
             sleep(1/60)
 
