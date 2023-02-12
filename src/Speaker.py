@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from threading import Thread
+from time import sleep
 
 import RPi.GPIO as gpio
 
@@ -32,5 +33,8 @@ class Speaker(Runnable):
             self.buzz()
 
     def buzz(self) -> None:
-        print('Buzz')
+        gpio.output(self.pin, gpio.HIGH)
+        sleep(self.speed / 2)
+        gpio.output(self.pin, gpio.LOW)
+        sleep(self.speed / 2)
 
