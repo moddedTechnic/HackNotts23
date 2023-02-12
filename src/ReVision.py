@@ -23,7 +23,7 @@ def run_aid():
         while True:
             speed = 0
             dist = sensor.get_distance()
-            print(dist)
+            # print(dist)
             if dist < dist_range[0]:
                 speed = speed_range[0]
             elif dist > dist_range[1]:

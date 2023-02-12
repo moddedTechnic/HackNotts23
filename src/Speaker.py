@@ -55,5 +55,6 @@ class Speaker(Runnable):
             sleep(off_time)
 
     def play(self):
+        print('Playing')
         self.click(110,0.25)
 
