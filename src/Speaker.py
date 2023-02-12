@@ -45,15 +45,12 @@ class Speaker(Runnable):
     def click(self, frequency: float, duration: float) -> None:
         frequency = max(frequency, 1)
         duration = max(duration, 0.1)
-        print(duration, frequency, duration * frequency, int(duration * frequency))
         period = 1 / frequency
         on_time = self.duty_cycle * period
         off_time = (1 - self.duty_cycle) * period
         for _ in range(int(duration * frequency) + 1):
-            print('On', end=' ')
             gpio.output(self.pin,gpio.HIGH)
             sleep(on_time)
-            print('off')
             gpio.output(self.pin,gpio.LOW)
             sleep(off_time)
 
