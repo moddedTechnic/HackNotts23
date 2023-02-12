@@ -11,7 +11,8 @@ from Runnable import Runnable
 class Speaker(Runnable):
     pin: int
     speed: float = field(default=0, init=False)
-    running: bool = False
+    running: bool = field(default=False, init=False)
+    thread: Thread | None = field(default=None, init=False)
 
     def __post_init__(self) -> None:
         gpio.setup(self.pin, gpio.OUT)
@@ -21,12 +22,15 @@ class Speaker(Runnable):
 
     def run(self) -> None:
         self.running = True
-        t = Thread(target=self.loop, args=())
-        t.start()
-        t.join()
+        self.thread = Thread(target=self.loop, args=())
+        self.thread.start()
 
     def stop(self) -> None:
+        if not self.running:
+            return
         self.running = False
+        assert self.thread is not None, "Abort time machine"
+        self.thread.join()
 
     def loop(self) -> None:
         while self.running:
