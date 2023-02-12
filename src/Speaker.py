@@ -38,11 +38,11 @@ class Speaker(Runnable):
             self.buzz()
 
     def buzz(self) -> None:
-        self.click(440, self.speed)
+        self.click(110, self.speed)
 
     def click(self, frequency: float, duration: float) -> None:
         period = 1 / frequency
-        duty_cycle = 0.5
+        duty_cycle = 0.125
         on_time = duty_cycle * period
         off_time = (1 - duty_cycle) * period
         for _ in range(int(frequency * duration)):

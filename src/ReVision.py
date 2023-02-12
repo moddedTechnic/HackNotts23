@@ -4,6 +4,11 @@ import time
 import DistanceSensor
 import Speaker
 
+
+def interpolate(t: float, t_min: float, t_max: float, x_min: float, x_max: float):
+    return x_min + (x_max - x_min) * (t - t_min) / (t_max - t_min)
+
+
 def run_aid():
     sensor = DistanceSensor.DistanceSensor(11,12)
     sensor.run()
@@ -24,7 +29,7 @@ def run_aid():
             elif dist > dist_range[1]:
                 speed = speed_range[1]
             else:
-                speed = dist
+                speed = interpolate(dist, *dist_range, *speed_range)
 
             speaker.set_speed(speed)
             time.sleep(1/60)
