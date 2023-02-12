@@ -45,13 +45,14 @@ class DistanceSensor:
             sleep(10/10_000_000)
             gpio.output(self.tx_pin,gpio.LOW)
 
-            while not gpio.input(self.rx_pin,gpio.LOW):
+            while not gpio.input(self.rx_pin):
                 pass
             startTime=time()
-            while gpio.input(self.rx_pin,gpio.HIGH):
+            while gpio.input(self.rx_pin):
                 pass
             stopTime=time()
             diffTime=stopTime-startTime
+            print(stopTime, startTime)
             self.distance = diffTime * SOUND_SPEED / 2
 
     def get_distance(self) -> float:
