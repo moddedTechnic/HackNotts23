@@ -1,8 +1,13 @@
+from typing import Union
 import RPi.GPIO as gpio
-from dataclasses import dataclass
-from time import sleep,time
+from dataclasses import dataclass, field
+from time import sleep, time
 from Runnable import Runnable
 from threading import Thread
+
+
+SOUND_SPEED = 343
+
  
 @dataclass
 class DistanceSensor:
@@ -10,38 +15,46 @@ class DistanceSensor:
     tx_pin: int
     rx_pin: int
 
-    Sound_Air=343
-    running = False
+    distance: float = field(default=0, init=False)
+
+    running: bool = field(default=False, init=False)
+    thread: Union[Thread, None] = field(default=None, init=False)
 
     def __post_init__(self):
-        #gpio.setmode(gpio.BOARD)
         gpio.setup(self.tx_pin,gpio.OUT)
         gpio.setup(self.rx_pin,gpio.OUT)
 
     def run(self): 
-        self.running=True
-        t = Thread(target=self.get_distance,args=())
-        t.start()
-        t.join()
+        self.running = True
+        self.thread = Thread(target=self.loop, args=())
+        self.thread.start()
 
     def stop(self):
-        self.running=False
+        if not self.running:
+            return
+        self.running = False
+        assert self.thread is not None, 'Abort time machine'
+        self.thread.join()
 
+    def loop(self) -> None:
+        while self.running:
+            self.recalculate_distance()
 
-    def get_distance(self) -> float:
+    def recalculate_distance(self) -> None:
         while self.running:
             gpio.output(self.tx_pin,gpio.HIGH)
-            time.sleep(10/10_000_000)
+            sleep(10/10_000_000)
             gpio.output(self.tx_pin,gpio.LOW)
 
             while not gpio.output(self.rx_pin,gpio.LOW):
                 pass
-            startTime=time.time()
+            startTime=time()
             while gpio.output(self.rx_pin,gpio.HIGH):
                 pass
-            stopTime=time.time()
+            stopTime=time()
             diffTime=stopTime-startTime
-            distance = diffTime * self.Sound_Air/2
+            self.distance = diffTime * SOUND_SPEED / 2
 
+    def get_distance(self) -> float:
+        return self.distance
 
-            return distance #distance in meters
