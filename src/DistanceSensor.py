@@ -21,7 +21,7 @@ class DistanceSensor:
 
     def __post_init__(self):
         gpio.setup(self.tx_pin,gpio.OUT)
-        gpio.setup(self.rx_pin,gpio.OUT)
+        gpio.setup(self.rx_pin,gpio.IN)
 
     def run(self): 
         self.running = True
