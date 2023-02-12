@@ -41,7 +41,7 @@ class DistanceSensor:
                 pass
             stopTime=time.time()
             diffTime=stopTime-startTime
-            distance = diffTime*self.Sound_Air//2
+            distance = diffTime * self.Sound_Air/2
 
 
             return distance #distance in meters
