@@ -10,14 +10,13 @@ def run_aid():
     sensor = DistanceSensor.DistanceSensor(11,12)
     sensor.run()
 
-    speaker = Speaker.Speaker(29)
+    speaker = Speaker.Speaker(7)
     speaker.run()
 
     dist_range = [0.2, 1.0]
     speed_range = [0.2, 1.0]
 
     while True:
-        
         speed = 0
         dist = sensor.get_distance()
         if dist < dist_range[0]:
@@ -28,9 +27,10 @@ def run_aid():
             speed = dist
 
         speaker.set_speed(speed)
+        print(f'Speed: {speed}')
 
         try:
-            None
+            pass
         except KeyboardInterrupt:
             speaker.stop()
             sensor.stop()
