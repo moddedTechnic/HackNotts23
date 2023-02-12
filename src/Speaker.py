@@ -35,7 +35,7 @@ class Speaker(Runnable):
 
     def loop(self) -> None:
         while self.running:
-            self.buzz()
+            self.play()
 
     def buzz(self) -> None:
         self.click(220 * self.speed, self.speed)
