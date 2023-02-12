@@ -1,5 +1,6 @@
 import RPi.GPIO as gpio
 import threading
+import time
 import DistanceSensor
 import Speaker
 
@@ -26,6 +27,7 @@ def run_aid():
                 speed = dist
 
             speaker.set_speed(speed)
+            time.sleep(1/60)
     except KeyboardInterrupt:
         speaker.stop()
         sensor.stop()
