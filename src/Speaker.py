@@ -38,7 +38,7 @@ class Speaker(Runnable):
             self.buzz()
 
     def buzz(self) -> None:
-        self.click(220 * self.speed, self.speed)
+        self.click(55 * self.speed, self.speed)
 
     duty_cycle = 0.75
 
