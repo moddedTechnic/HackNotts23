@@ -11,7 +11,6 @@ SOUND_SPEED = 343
  
 @dataclass
 class DistanceSensor:
-
     tx_pin: int
     rx_pin: int
 
@@ -46,10 +45,10 @@ class DistanceSensor:
             sleep(10/10_000_000)
             gpio.output(self.tx_pin,gpio.LOW)
 
-            while not gpio.output(self.rx_pin,gpio.LOW):
+            while not gpio.input(self.rx_pin,gpio.LOW):
                 pass
             startTime=time()
-            while gpio.output(self.rx_pin,gpio.HIGH):
+            while gpio.input(self.rx_pin,gpio.HIGH):
                 pass
             stopTime=time()
             diffTime=stopTime-startTime
