@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from threading import Thread
 from time import sleep
+from typing import Union
 
 import RPi.GPIO as gpio
 
@@ -12,7 +13,7 @@ class Speaker(Runnable):
     pin: int
     speed: float = field(default=0, init=False)
     running: bool = field(default=False, init=False)
-    thread: Thread | None = field(default=None, init=False)
+    thread: Union[Thread, None] = field(default=None, init=False)
 
     def __post_init__(self) -> None:
         gpio.setup(self.pin, gpio.OUT)
