@@ -13,7 +13,7 @@ class DistanceSensor:
     Sound_Air=343
     running = False
 
-    def __post__init(self):
+    def __post_init__(self):
         #gpio.setmode(gpio.BOARD)
         gpio.setup(self.tx_pin,gpio.OUT)
         gpio.setup(self.rx_pin,gpio.OUT)
