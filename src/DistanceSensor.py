@@ -10,7 +10,7 @@ SOUND_SPEED = 343
 
  
 @dataclass
-class DistanceSensor:
+class DistanceSensor(Runnable):
     tx_pin: int
     rx_pin: int
 
@@ -53,6 +53,7 @@ class DistanceSensor:
             diffTime = stopTime - startTime
             print(stopTime, startTime, diffTime)
             self.distance = diffTime * SOUND_SPEED / 2
+            sleep(1/60)
 
     def get_distance(self) -> float:
         return self.distance
