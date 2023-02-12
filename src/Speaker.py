@@ -43,6 +43,8 @@ class Speaker(Runnable):
 
     duty_cycle = 0.1
     def click(self, frequency: float, duration: float) -> None:
+        frequency = min(frequency, 0.01)
+        duration = min(duration, 0.1)
         period = 1 / frequency
         on_time = self.duty_cycle * period
         off_time = (1 - self.duty_cycle) * period
@@ -54,3 +56,4 @@ class Speaker(Runnable):
 
     def play(self):
         self.click(110,0.25)
+
