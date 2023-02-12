@@ -1,9 +1,10 @@
+import RPi.GPIO as gpio
 import threading
 import DistanceSensor
 import Speaker
 
 def run_aid():
-
+    gpio.setmode(gpio.BOARD)
     sensor = DistanceSensor.DistanceSensor(11,12)
 
 
